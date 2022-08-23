@@ -8,7 +8,6 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - name: publish nuget package
       - uses: actions/checkout@v3
       - uses: actions/setup-dotnet@v2
         with:
