@@ -13,8 +13,10 @@ jobs:
         with:
           dotnet-version: '6.0.400'
           source-url: https://nuget.pkg.github.com/sergeytiron/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: dotnet build ConsoleApp/ConsoleApp.csproj
       - name: Create the package
         run: dotnet pack --configuration Release ConsoleApp/ConsoleApp.csproj
       - name: Publish the package to GPR
-        run: dotnet nuget push ConsoleApp/bin/Release/*.nupkg -k ${{ secrets.GITHUB_TOKEN }}
+        run: dotnet nuget push ConsoleApp/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN
