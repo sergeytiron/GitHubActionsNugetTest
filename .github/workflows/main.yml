@@ -1,0 +1,23 @@
+name: PublishNuget
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: publish nuget package
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '6.0.400'
+          source-url: https://nuget.pkg.github.com/sergeytiron/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - run: dotnet build ConsoleApp/ConsoleApp.csproj
+      - name: Create the package
+        run: dotnet pack --configuration Release ConsoleApp/ConsoleApp.csproj
+      - name: Publish the package to GPR
+        run: dotnet nuget push ConsoleApp/bin/Release/*.nupkg
