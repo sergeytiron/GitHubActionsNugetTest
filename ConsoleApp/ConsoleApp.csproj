@@ -6,6 +6,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <PackageVersion>0.0.1</PackageVersion>
+        <RepositoryUrl>https://github.com/sergeytiron/GitHubActionsNugetTest</RepositoryUrl>
     </PropertyGroup>
 
 </Project>
